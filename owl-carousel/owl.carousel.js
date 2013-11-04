@@ -340,7 +340,13 @@ if ( typeof Object.create !== "function" ) {
 
 		calculateWidth : function(){
 			var base = this;
-			base.itemWidth = Math.round(base.$elem.width()/base.options.items)
+			
+			var itemWidth = Math.round(base.$elem.width()/base.options.items);
+			if(base.options.itemSpaceWidth != undefined && base.options.itemSpaceWidth > 0) {
+				itemWidth += base.options.itemSpaceWidth / base.options.items;
+			}
+			
+			base.itemWidth = itemWidth;
 		},
 
 		max : function(){
@@ -1365,6 +1371,7 @@ if ( typeof Object.create !== "function" ) {
 		itemsMobile 			: [479,1],
 		singleItem 				: false,
 		itemsScaleUp			: false,
+		itemSpaceWidth			: 0,
 
 		slideSpeed 				: 200,
 		paginationSpeed 		: 800,
